@@ -1,9 +1,31 @@
-"use client";
+import { Compass, Layout } from "lucide-react";
+import {SidebarItem} from "./sidebarItem"; // Ensure correct filename and path for SidebarItem
 
-export default function SideBarRoutes() {
+const guestRoutes = [
+  {
+    icon: Layout,
+    label: "Dashboard",
+    href: '/',
+  },
+  {
+    icon: Compass,
+    label: "Browse",
+    href: '/search',
+  }
+];
+
+export const SideBarRoutes = () => {
+  const routes = guestRoutes;
   return (
-    <div>
-      Route 1
+    <div className="flex flex-col w-full">
+      {routes.map((route) => (
+        <SidebarItem 
+          key={route.href}
+          icon={route.icon}
+          label={route.label}
+          href={route.href}
+        />
+      ))}
     </div>
-  )
+  );
 }

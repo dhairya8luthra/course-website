@@ -1,6 +1,7 @@
+"use client"
 import {Logo} from "./Logo"
-import SideBarRoutes from "./sidebar-routes"
-export default function SideBar() {
+import {SideBarRoutes} from "./sidebar-routes"
+export const SideBar = () => {
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm z-50">
       <div className="p-6 z-50">
