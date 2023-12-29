@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import {Input} from "@/components/ui/input"
+import toast from "react-hot-toast";
 const schema = z.object({
     title: z.string().min(1,{
         message:"Title is required"
@@ -34,10 +35,10 @@ export default function Createpage() {
         console.log(values);
         try {
             const response = await axios.post("/api/course",values);
-            
+            router.push(`/teacher/courses/${response.data.id}`)
 
         }catch{
-            console.log("Something went Wrong")
+            toast.error("Something went wrong")
         }
     }
   return (
