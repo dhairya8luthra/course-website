@@ -1,5 +1,9 @@
 import { Compass, Layout } from "lucide-react";
-import {SidebarItem} from "./sidebarItem"; // Ensure correct filename and path for SidebarItem
+import {SidebarItem} from "./sidebarItem"; 
+import { BarChart,List } from "lucide-react";
+import { usePathname } from "next/navigation";
+
+// Ensure correct filename and path for SidebarItem
 
 const guestRoutes = [
   {
@@ -13,13 +17,30 @@ const guestRoutes = [
     href: '/search',
   }
 ];
+const teacherRoutes = [
+  {
+    icon: List,
+    label: "Courses",
+    href: "/teacher/courses",
+  },
+  {
+    icon: BarChart,
+    label: "Analytics",
+    href: "/teacher/analytics",
+  },
+]
 
-export const SideBarRoutes = () => {
-  const routes = guestRoutes;
+export const SidebarRoutes = () => {
+  const pathname = usePathname();
+
+  const isTeacherPage = pathname?.includes("/teacher");
+
+  const routes = isTeacherPage ? teacherRoutes : guestRoutes;
+
   return (
     <div className="flex flex-col w-full">
       {routes.map((route) => (
-        <SidebarItem 
+        <SidebarItem
           key={route.href}
           icon={route.icon}
           label={route.label}
@@ -27,5 +48,5 @@ export const SideBarRoutes = () => {
         />
       ))}
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
 "use client"
 import {Logo} from "./Logo"
-import {SideBarRoutes} from "./sidebar-routes"
+import {SidebarRoutes} from "./sidebar-routes"
 export const SideBar = () => {
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto bg-white shadow-sm z-50">
@@ -8,7 +8,7 @@ export const SideBar = () => {
       <Logo/>
       </div>
       <div className="flex flex-col w full">
-        <SideBarRoutes/>
+        <SidebarRoutes/>
       </div>   
     </div>
   )
