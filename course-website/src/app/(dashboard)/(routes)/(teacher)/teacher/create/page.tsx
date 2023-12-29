@@ -3,7 +3,8 @@ import * as z from "zod";
 import axios from "axios";
 import {zodResolver} from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { 
     Form ,
     FormControl,
@@ -21,6 +22,7 @@ const schema = z.object({
     })
     });
 export default function Createpage() {
+    const router = useRouter();
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
         defaultValues:{
@@ -28,8 +30,15 @@ export default function Createpage() {
         }
     })
     const {isSubmitting,isValid} = form.formState;
-    const OnSubmit =(values: z.infer<typeof schema>) =>{
+    const OnSubmit = async(values: z.infer<typeof schema>) =>{
         console.log(values);
+        try {
+            const response = await axios.post("/api/course",values);
+            
+
+        }catch{
+            console.log("Something went Wrong")
+        }
     }
   return (
     <div className="max-w-5xl mx-auto flex md:items-center 
@@ -42,26 +51,51 @@ export default function Createpage() {
                 What would you like to name your course?
             </p>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(OnSubmit)}
-                className="space-y-8 mt-8">
-                    <FormField
-                    control={form.control}
-                    name="title"
-                    render={({field}) =>(
-                        <FormItem>
-                            <FormLabel>
-                                Course Title
-                            </FormLabel>
-                            <FormControl>
-                                <Input
-                                disabled={isSubmitting}
-                                placeholder="eg Face Yoga Course"
-                                {...field}></Input>
-                            </FormControl>
-                        </FormItem>
-                    )}></FormField>
-                </form>
-            </Form>
+          <form
+            onSubmit={form.handleSubmit(OnSubmit)}
+            className="space-y-8 mt-8"
+          >
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-purple-700">
+                    Course title
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="e.g. 'Face Yoga Course'"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    What will you teach in this course?
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex items-center gap-x-2">
+              <Link href="/">
+                <Button
+                  type="button"
+                  variant="ghost"
+                >
+                  Cancel
+                </Button>
+              </Link>
+              <Button
+                type="submit"
+                disabled={!isValid || isSubmitting}
+              >
+                Continue
+              </Button>
+            </div>
+          </form>
+        </Form>
+     
         </div>
     </div>
   )
