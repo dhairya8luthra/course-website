@@ -64,7 +64,7 @@ export const Actions = ({
 
   return (
     <div className="flex items-center gap-x-2">
-      <Button
+      <Button className="hover:bg-purple-600 hover:text-white"
         onClick={onClick}
         disabled={disabled || isLoading}
         variant="outline"
@@ -73,7 +73,7 @@ export const Actions = ({
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
+        <Button size="sm" className="hover:bg-red-600" disabled={isLoading}>
           <Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>
