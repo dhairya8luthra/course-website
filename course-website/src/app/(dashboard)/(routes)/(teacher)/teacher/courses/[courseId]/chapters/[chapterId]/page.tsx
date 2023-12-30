@@ -6,6 +6,9 @@ import { ArrowLeft, LayoutDashboard } from "lucide-react"
 import { IconBadge } from "@/components/icon-badge";
 import { ChapterTitleForm } from "./_components/chapter-title-form"
 import { ChapterDescriptionForm } from "./_components/chapter-descripton-form"
+import { Eye } from "lucide-react"
+import { ChapterAccessForm } from "./_components/chapter-access-form"
+
 const ChapterIdPage =  async({params}:{params: {courseId: string; chapterId: string}}) => {
     const {userId} = auth();
     if(!userId) {
@@ -78,7 +81,22 @@ const ChapterIdPage =  async({params}:{params: {courseId: string; chapterId: str
                             chapterId={params.chapterId}
                             />                  
               </div>
+              </div>
+              <div>
+                        <div className="flex items-center gap-x-2">
+                            <IconBadge icon={Eye}/>
+                            <h2 text-xl>
+                                Access Settings
+                            </h2>
+                        </div>
+                        <ChapterAccessForm
+                        initialData={chapter}
+                        courseId={params.courseId}
+                        chapterId={params.chapterId}
+                        />
                     </div>
+
+
                 </div>
 
             </div>
