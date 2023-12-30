@@ -66,7 +66,7 @@ export const DescriptionForm = ({
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Course description
-        <Button onClick={toggleEdit} variant="ghost">
+        <Button onClick={toggleEdit} className="hover:text-purple-500" variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -108,7 +108,7 @@ export const DescriptionForm = ({
               )}
             />
             <div className="flex items-center gap-x-2">
-              <Button
+              <Button className="hover:bg-purple-600"
                 disabled={!isValid || isSubmitting}
                 type="submit"
               >
