@@ -46,14 +46,14 @@ export const CourseSidebarItem = ({
           size={22}
           className={cn(
             "text-slate-500",
-            isActive && "text-slate-700",
+            isActive && "text-slate-500",
             isCompleted && "text-purple-700"
           )}
         />
         {label}
       </div>
       <div className={cn(
-        "ml-auto opacity-0 border-2 border-slate-700 h-full transition-all",
+        "ml-auto opacity-0 border-2 border-purple-700 h-full transition-all",
         isActive && "opacity-100",
         isCompleted && "border-purple-700"
       )} />
